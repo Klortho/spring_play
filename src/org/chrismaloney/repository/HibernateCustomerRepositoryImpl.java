@@ -7,6 +7,9 @@ import org.chrismaloney.model.Customer;
 import org.springframework.stereotype.Repository;
 
 
+// This annotation "wires" this implementation to the interface.
+// By convention, this should be named the same as the interface, but with a lowercase
+// initial letter.
 
 @Repository("customerRepository")
 
