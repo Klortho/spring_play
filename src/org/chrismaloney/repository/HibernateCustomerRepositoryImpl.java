@@ -4,7 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.chrismaloney.model.Customer;
+import org.springframework.stereotype.Repository;
 
+
+
+@Repository("customerRepository")
 
 public class HibernateCustomerRepositoryImpl implements CustomerRepository {
 
