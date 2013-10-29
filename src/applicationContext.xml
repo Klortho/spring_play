@@ -13,4 +13,5 @@
   <!-- Where to start scanning for annotations -->
   <context:component-scan base-package="org.chrismaloney"/>
 
+  <context:property-placeholder location='app.properties'/>
 </beans>
