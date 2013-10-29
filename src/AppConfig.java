@@ -3,6 +3,7 @@ import org.chrismaloney.repository.HibernateCustomerRepositoryImpl;
 import org.chrismaloney.service.CustomerService;
 import org.chrismaloney.service.CustomerServiceImpl;
 import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 // In a Java configured project, this class, with its annotations, takes the place
@@ -11,6 +12,9 @@ import org.springframework.context.annotation.Configuration;
 
 // @Configuration is a class-level annotation, that 
 @Configuration
+
+// Use this for autowiring:
+@ComponentScan({"org.chrismaloney"})
 public class AppConfig {
 	
 	// This identifies the following as the method to use to get a particular bean
@@ -25,7 +29,10 @@ public class AppConfig {
 		//customerService.setCustomerRepository(getCustomerRepository());
 		
 		// This is constructor injection:
-		CustomerServiceImpl customerService = new CustomerServiceImpl(getCustomerRepository());
+		//CustomerServiceImpl customerService = new CustomerServiceImpl(getCustomerRepository());
+		
+		// For auto-wired:
+		CustomerServiceImpl customerService = new CustomerServiceImpl();
 		
 		return customerService;
     }
