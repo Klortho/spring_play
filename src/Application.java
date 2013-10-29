@@ -1,5 +1,4 @@
 import org.chrismaloney.service.CustomerService;
-import org.chrismaloney.service.CustomerServiceImpl;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
