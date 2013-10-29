@@ -5,7 +5,9 @@ import org.chrismaloney.service.CustomerServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.annotation.Scope;
+import org.springframework.context.support.PropertySourcesPlaceholderConfigurer;
 
 // In a Java configured project, this class, with its annotations, takes the place
 // of applicationContext.xml.
@@ -16,7 +18,16 @@ import org.springframework.context.annotation.Scope;
 
 // Use this for autowiring:
 @ComponentScan({"org.chrismaloney"})
+
+// Import properties
+@PropertySource("app.properties")
+
 public class AppConfig {
+	
+	@Bean
+	public static PropertySourcesPlaceholderConfigurer getPropertySourcesPlaceholderConfigurer() {
+		return new PropertySourcesPlaceholderConfigurer();
+	}
 	
 	// This identifies the following as the method to use to get a particular bean
 	// Note that the name of the *method* doesn't matter.  But it's a nice idea to
