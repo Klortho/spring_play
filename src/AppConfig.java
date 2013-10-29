@@ -5,6 +5,7 @@ import org.chrismaloney.service.CustomerServiceImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 
 // In a Java configured project, this class, with its annotations, takes the place
 // of applicationContext.xml.
@@ -22,6 +23,7 @@ public class AppConfig {
 	// use the same conventions as with annotation-based configurations
 	
 	@Bean(name = "customerService")
+	@Scope("prototype")
     public CustomerService getCustomerService() {
 		
 		// This is setter injection:
