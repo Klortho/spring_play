@@ -17,7 +17,7 @@ public class GoalController {
 	// The `RequestMethod.GET` means that this will only respond to GET requests.
 	// This method is called the first time we ever come to the addGoal page, and
 	// displays the form, with a default value for the goal.
-	@RequestMapping(value = "addGoal", method= RequestMethod.GET)
+	@RequestMapping(value = "/addGoal", method = RequestMethod.GET)
 	public String addGoal(Model model) {
 		Goal goal = new Goal();
 		goal.setMinutes(10);
