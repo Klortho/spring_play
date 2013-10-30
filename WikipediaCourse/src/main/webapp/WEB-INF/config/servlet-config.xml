@@ -20,15 +20,47 @@
   <!-- Define where the component scanner should start looking for annotations. -->
   <context:component-scan base-package="org.chrismaloney.controller"/>
 
-  <!-- This bean lets the app find the JSP pages.  This is the long, hard way.
+
+  <!-- 
+    Register an interceptor to change the locale value from the default.  This specifies to use
+    the query string parameter "language" to define the locale, and it looks for a bean with
+    the @id "localeResolver" (below) to change the locale.
+  -->
+  <mvc:interceptors>
+    <bean class="org.springframework.web.servlet.i18n.LocaleChangeInterceptor"
+          p:paramName="language"/>
+  </mvc:interceptors>
+
+  <!-- 
+    This specifies how we define our locale, and gives it the default value "en".
+    The @id must be be "localeResolver". 
+  -->
+  <bean id="localeResolver"
+        class="org.springframework.web.servlet.i18n.SessionLocaleResolver"
+        p:defaultLocale="en"/>
+
+  <!-- 
+    This specifies where to get message text from.  The @id must be "messageSource". 
+  -->
+  <bean id="messageSource" 
+        class="org.springframework.context.support.ResourceBundleMessageSource"
+        p:basename="messages"/>
+
+
+
+
+
+ <!-- This bean lets the app find the JSP pages.  This is the long, hard way.
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="prefix" value="/WEB-INF/jsp/"/>
       <property name="suffix" value='.jsp'/>
     </bean>
-   -->
-   <!-- This is the nominally easier way.  Requires the p: namespace. -->
-   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
-         p:prefix="/WEB-INF/jsp/" 
-         p:suffix=".jsp" />
-   
+  -->
+  
+  <!-- This is the nominally easier way.  Requires the p: namespace. -->
+  <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
+       p:prefix="/WEB-INF/jsp/" 
+       p:suffix=".jsp" />
+
+
 </beans>
