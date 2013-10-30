@@ -19,12 +19,18 @@
   </servlet>   
   
   <!--
-    This specifies which URLs will be mapped to our servlet. 
+    These specify which URLs will be mapped to our servlet. 
   -->
   <servlet-mapping>
     <servlet-name>wikipediaCourseServlet</servlet-name>
     <url-pattern>*.html</url-pattern>
   </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>wikipediaCourseServlet</servlet-name>
+    <url-pattern>/assets/**</url-pattern>
+  </servlet-mapping>
+                            
                             
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
