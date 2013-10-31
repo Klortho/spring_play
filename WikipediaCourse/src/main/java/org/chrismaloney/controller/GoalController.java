@@ -1,11 +1,8 @@
 package org.chrismaloney.controller;
 
-import javax.validation.Valid;
-
 import org.chrismaloney.model.Goal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -31,12 +28,8 @@ public class GoalController {
 	// This method handles POST requests of the form, after the user has added a
 	// goal and clicked submit.  It will get the goal from the form (ModelAttribute)
 	// and persist it (how?) and then redirect to another page.
-	// This is where we add validation, since it's a user-created object.
 	@RequestMapping(value = "addGoal", method= RequestMethod.POST)
-	public String updateGoal(@Valid @ModelAttribute("goal") Goal goal,
-			                 BindingResult result) 
-	{
-		System.out.println("result has errors: " + result.hasErrors());
+	public String updateGoal(@ModelAttribute("goal") Goal goal) {
 		System.out.println("goal is " + goal.getMinutes());
 		return "redirect:addStudents.html";
 	}
