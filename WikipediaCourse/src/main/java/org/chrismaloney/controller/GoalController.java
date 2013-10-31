@@ -1,5 +1,7 @@
 package org.chrismaloney.controller;
 
+import javax.validation.Valid;
+
 import org.chrismaloney.model.Goal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -34,6 +36,10 @@ public class GoalController {
 	public String updateGoal(@Valid @ModelAttribute("goal") Goal goal, BindingResult result) {
 		System.out.println("result has errors: " + result.hasErrors());
 		System.out.println("goal is " + goal.getMinutes());
+		
+		if (result.hasErrors()) {
+			return "addGoal";
+		}
 		return "redirect:addStudents.html";
 	}
 }
