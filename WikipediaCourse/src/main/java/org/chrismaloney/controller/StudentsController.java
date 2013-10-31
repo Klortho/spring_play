@@ -1,10 +1,11 @@
 package org.chrismaloney.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.chrismaloney.model.Activity;
 import org.chrismaloney.model.Exercise;
+import org.chrismaloney.service.ExerciseService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,6 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class StudentsController {
+	
+	@Autowired
+	private ExerciseService exerciseService;
 	
 	@RequestMapping(value = "/addStudents")
 	// The @ModelAttribute here declares a binding from the JSP <form:form commandName="exercise">
@@ -44,18 +48,7 @@ public class StudentsController {
 	// The @ResponseBody annotation here means that the we're returning the response body directly, not
 	// a string that refers to a view.
 	public @ResponseBody List<Activity> findAllActivities() {
-		List<Activity> activities = new ArrayList<Activity>();
-		
-		Activity run = new Activity("Run");
-		activities.add(run);
-		
-		Activity swim = new Activity("Swim");
-		activities.add(swim);
-		
-		Activity bike = new Activity("Bike");
-		activities.add(bike);
-		
-		return activities;
+		return exerciseService.findAllActivities();
 	}
 
 	@RequestMapping(value = "/addMoreStudents")
