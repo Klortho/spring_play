@@ -36,7 +36,8 @@ public class GoalController {
 	public String updateGoal(@Valid @ModelAttribute("goal") Goal goal, BindingResult result) {
 		System.out.println("result has errors: " + result.hasErrors());
 		System.out.println("goal is " + goal.getMinutes());
-		
+
+		// If there are validation errors, just display the original form again
 		if (result.hasErrors()) {
 			return "addGoal";
 		}

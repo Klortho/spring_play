@@ -1,9 +1,15 @@
 package org.chrismaloney.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import org.chrismaloney.model.Activity;
 import org.chrismaloney.model.Exercise;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 public class StudentsController {
@@ -15,6 +21,7 @@ public class StudentsController {
 	public String addStudents(@ModelAttribute("exercise") Exercise exercise) {
 		int m = exercise.getMinutes();
 		System.out.println("exercise: " + m);
+		System.out.println("activity: " + exercise.getActivity());
 		
 		
 		// Contrived example to show the different things that a controller can do
@@ -31,6 +38,24 @@ public class StudentsController {
 			return "redirect:addMoreStudents.html";
 		else
 			return "addStudents";
+	}
+	
+	@RequestMapping(value = "/activities", method = RequestMethod.GET)
+	// The @ResponseBody annotation here means that the we're returning the response body directly, not
+	// a string that refers to a view.
+	public @ResponseBody List<Activity> findAllActivities() {
+		List<Activity> activities = new ArrayList<Activity>();
+		
+		Activity run = new Activity("Run");
+		activities.add(run);
+		
+		Activity swim = new Activity("Swim");
+		activities.add(swim);
+		
+		Activity bike = new Activity("Bike");
+		activities.add(bike);
+		
+		return activities;
 	}
 
 	@RequestMapping(value = "/addMoreStudents")

@@ -21,6 +21,45 @@
   <context:component-scan base-package="org.chrismaloney.controller"/>
 
 
+  <!-- Set up a content negotiating view resolver, that  -->
+  <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
+    <!-- This specifies the order in which the view resolvers are loaded -->
+    <property name="order" value="1" />
+    <property name="contentNegotiationManager">
+      <bean class="org.springframework.web.accept.ContentNegotiationManager">
+        <constructor-arg>
+          <bean class="org.springframework.web.accept.PathExtensionContentNegotiationStrategy">
+            <constructor-arg>
+              <map>
+                <entry key="json" value='application/json'/>
+                <entry key='xml' value='application/xml'/>
+              </map>
+            </constructor-arg>
+          </bean>
+        </constructor-arg>
+      </bean>
+    </property>
+    <property name="defaultViews">
+      <list>
+        <bean class='org.springframework.web.servlet.view.json.MappingJacksonJsonView'/>
+        <bean class='org.springframework.web.servlet.view.xml.MarshallingView'>
+          <constructor-arg>
+            <bean class='org.springframework.oxm.xstream.XStreamMarshaller'>
+              <property name='autodetectAnnotations' value='true'/>
+            </bean>
+          </constructor-arg>
+        </bean>
+      </list>
+    </property>
+  </bean>
+
+
+
+
+
+
+
+
   <!-- 
     Register an interceptor to change the locale value from the default.  This specifies to use
     the query string parameter "language" to define the locale, and it looks for a bean with
@@ -50,6 +89,8 @@
 
 
 
+
+
  <!-- This bean lets the app find the JSP pages.  This is the long, hard way.
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
       <property name="prefix" value="/WEB-INF/jsp/"/>
@@ -59,8 +100,8 @@
   
   <!-- This is the nominally easier way.  Requires the p: namespace. -->
   <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver" 
-       p:prefix="/WEB-INF/jsp/" 
-       p:suffix=".jsp" />
+        p:prefix="/WEB-INF/jsp/" 
+        p:suffix=".jsp" />
 
 
 </beans>

@@ -19,18 +19,25 @@
   </servlet>   
   
   <!--
-    These specify which URLs will be mapped to our servlet. 
+    These specify which URLs will be mapped to our servlet.
+    In the tutorial, these were all separated such that there was one <url-pattern> per 
+    <servlet-mapping>.  But it seems to work for me to put them all together. 
   -->
-  <servlet-mapping>
-    <servlet-name>wikipediaCourseServlet</servlet-name>
-    <url-pattern>*.html</url-pattern>
-  </servlet-mapping>
 
   <servlet-mapping>
     <servlet-name>wikipediaCourseServlet</servlet-name>
+    <url-pattern>*.html</url-pattern>
     <url-pattern>/assets/**</url-pattern>
+    <url-pattern>*.json</url-pattern>
   </servlet-mapping>
-                            
-                            
+
+<!-- 
+  <servlet-mapping>
+    <servlet-name>wikipediaCourseServlet</servlet-name>
+    <url-pattern>*.json</url-pattern>
+  </servlet-mapping>
+ -->
+
+
   <display-name>Archetype Created Web Application</display-name>
 </web-app>
