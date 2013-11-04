@@ -1,1 +1,7 @@
 target
+*.iml
+.idea
+*.swp
+.classpath
+.project
+.settings
